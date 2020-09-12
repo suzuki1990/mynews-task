@@ -17,15 +17,15 @@ class ProfileController extends Controller
     public function create(Request $request)
     {
         $this->validate($request, Profile::$rules);
-        $profile = new Profile;
+        $profiles = new Profile;
         $form = $request->all();
     
      //フォームから送信されてきた_tokenを削除する
         unset($form['_token']);
 
      //データベースに保存
-        $profile->fill($form);
-        $profile->save();
+        $profiles->fill($form);
+        $profiles->save();
         
         return redirect('admin/profile/create');
     }
@@ -59,27 +59,19 @@ class ProfileController extends Controller
          $profile = Profile::find($request->id);
         // 送信されてきたフォームデータを格納する
         $profile_form = $request->all();
-        if (isset($plofile_form['image'])) {
-        $path = $request->file('image')->store('public/image');
-        $profile->image_path = basename($path);
-        unset($profile_form['image']);
-      } elseif (isset($request->remove)) {
-        $plofile->image_path = null;
-        unset($plofile_form['remove']);
-      }
-        unset($plofile_form['_token']);
+       
         // 該当するデータを上書きして保存する
-        $plofile->fill($plofile_form)->save();
+        $profile->fill($profile_form)->save();
 
-        return redirect('admin/profile/');
+        return redirect('admin/profile/edit?id=' . $profile->id);
     }
     
     public function delete(Request $request)
   {
       // 該当するNews Modelを取得
-      $plofile = Plofile::find($request->id);
+      $profile = Profile::find($request->id);
       // 削除する
-      $plofile->delete();
+      $profile->delete();
       return redirect('admin/profile/');
   }  
 
