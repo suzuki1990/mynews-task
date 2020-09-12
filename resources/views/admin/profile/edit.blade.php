@@ -18,14 +18,12 @@
                         <label class="col-md-2" for="name">氏名</label>
                         <div class="col-md-10">
                             <input type="text" class="form-control" name="name" value="{{ $profile_form->name }}">
-                            <input type="text" class="form-control" name="name" value="{{ $profile_form->title }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2" for="gender">性別</label>
                         <div class="col-md-10">
                             <input type="text" class="form-control" name="gender" value="{{ $profile_form->gender }}">
-                            <input type="text" class="form-control" name="gender" value="{{ $profile_form->title }}">
                         </div>
                     </div>
                     
@@ -33,15 +31,13 @@
                         <label class="col-md-2" for="hobby">趣味</label>
                         <div class="col-md-10">
                             <input type="text" class="form-control" name="hobby" value="{{ $profile_form->hobby }}">
-                            <input type="text" class="form-control" name="hobby" value="{{ $profile_form->title }}">
                         </div>
                     </div>
                     
                     <div class="form-group row">
                         <label class="col-md-2" for="introduction">自己紹介欄</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="introduction" value="{{ $profile_form->introduction }}">
-                            <input type="text" class="form-control" name="introduction" value="{{ $profile_form->title }}">
+                            <textarea class="form-control" name="introduction" row="20">{{ $profile_form->introduction }}</textarea>
                         </div>
                     </div>
                     
