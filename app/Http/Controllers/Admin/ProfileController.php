@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Profile;
+use App\Profile_History;
+use Carbon\Carbon;
 
 class ProfileController extends Controller
 {
@@ -60,8 +62,14 @@ class ProfileController extends Controller
         // 送信されてきたフォームデータを格納する
         $profile_form = $request->all();
        
+        unset($profile_form['_token']);
         // 該当するデータを上書きして保存する
         $profile->fill($profile_form)->save();
+        
+        $profile_history = new ProfileHistory;
+        $profile_history->profile_id = $profile->id;
+        $profile_history->edited_at = Carbon::now();
+        $profile_history->save();
 
         return redirect('admin/profile/edit?id=' . $profile->id);
     }
