@@ -29,7 +29,7 @@ class ProfileController extends Controller
         $profiles->fill($form);
         $profiles->save();
         
-        return redirect('admin/profile/create');
+        return redirect('admin/profile');
     }
 
     public function index(Request $request)
@@ -71,7 +71,7 @@ class ProfileController extends Controller
         $profile_history->edited_at = Carbon::now();
         $profile_history->save();
 
-        return redirect('admin/profile/edit?id=' . $profile->id);
+        return redirect('admin/profile');
     }
     
     public function delete(Request $request)

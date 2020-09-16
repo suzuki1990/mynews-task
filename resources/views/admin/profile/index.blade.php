@@ -11,7 +11,7 @@
                 <a href="{{ action('Admin\ProfileController@add') }}" role="button" class="btn btn-primary">新規作成</a>
             </div>
             <div class="col-md-8">
-                <form action="{{ action('Admin\NewsController@index') }}" method="get">
+                <form action="{{ action('Admin\ProfileController@index') }}" method="get">
                     <div class="form-group row">
                         <label class="col-md-2">タイトル</label>
                         <div class="col-md-8">
@@ -42,9 +42,11 @@
                         <tbody>
                             @foreach($posts as $news)
                                 <tr>
-                                    <th>{{ $news->id }}</th>
-                                    <td>{{ str_limit($profile->title, 100) }}</td>
-                                    <td>{{ str_limit($profile->body, 250) }}</td>
+                                    <th>{{ $profile->id }}</th>
+                                    <td>{{ \Str::limit($profile->name, 30) }}</td>
+                                    <td>{{ \Str::limit($profile->gender, 10) }}</td>
+                                    <td>{{ \Str::limit($profile->hobby, 100) }}</td>
+                                    <td>{{ \Str::limit($profile->introduction, 200) }}</td>
                                     <td>
                                         <div>
                                             <a href="{{ action('Admin\ProfileController@edit', ['id' => $profile->id]) }}">編集</a>
